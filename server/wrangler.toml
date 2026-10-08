@@ -1,0 +1,9 @@
+name = "carehub-cloud"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+[ai]
+binding = "AI"
+[[kv_namespaces]]
+binding = "DB"
+id = "PASTE_YOUR_KV_NAMESPACE_ID"
+# Secrets (set in dashboard or `npx wrangler secret put NAME`): MOD_KEY (your moderator password), ANTHROPIC_API_KEY (optional)
