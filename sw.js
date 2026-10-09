@@ -1,6 +1,6 @@
 // Offline support: stale-while-revalidate for same-origin files. Bump V when you ship updates.
-const V='carehub-v5';
-self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(['./','index.html','css/styles.css','js/app.js','js/storage.js','js/voice.js','js/ai.js','js/mod.js','js/welcome.js','js/cloud.js','js/content.js','js/config.js','js/offline.js','js/book.js','js/data/extras.js','js/data/pages.js','js/offline.js','js/book.js','js/data/extras.js','js/data/topics.js','js/data/qa.js','js/data/pages.js','assets/icon.svg'])));self.skipWaiting()});
+const V='carehub-v6';
+self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(['./','index.html','css/styles.css','js/app.js','js/storage.js','js/voice.js','js/ai.js','js/listen.js','js/mod.js','js/welcome.js','js/cloud.js','js/content.js','js/config.js','js/offline.js','js/book.js','js/data/extras.js','js/data/pages.js','js/offline.js','js/book.js','js/data/extras.js','js/data/topics.js','js/data/qa.js','js/data/pages.js','assets/icon.svg'])));self.skipWaiting()});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!=V).map(x=>caches.delete(x)))));self.clients.claim()});
 self.addEventListener('fetch',e=>{const r=e.request;if(r.method!='GET'||new URL(r.url).origin!=location.origin)return;
  e.respondWith(caches.open(V).then(async c=>{const hit=await c.match(r,{ignoreSearch:true});const net=fetch(r).then(x=>{if(x.ok)c.put(r,x.clone());return x}).catch(()=>hit);return hit||net}))});
